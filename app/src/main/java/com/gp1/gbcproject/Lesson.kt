@@ -1,7 +1,5 @@
 package com.gp1.gbcproject
 
-import java.time.Duration
-
 class Lesson(val title:String, val duration:Int, val img:Int, val desc:String, val link:String, val lessonid:Int) {
     fun durToStr():String{
         val min:Int = duration%60
