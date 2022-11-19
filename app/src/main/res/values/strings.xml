@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">GBCAndroidProject</string>
+    <string name="app_name">Skill It!</string>
     <string name="designed_by_homing_lau_co">Designed by Homing Lau &amp; Co. in association with Alvaro Garcia LLC</string>
+    <string name="what_is_your_name">What\'s your name?</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="continue_btn">Continue</string>
+    <string name="delete_all_data_and_reset">Delete all data and reset</string>
 </resources>
