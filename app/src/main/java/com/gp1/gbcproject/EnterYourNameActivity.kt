@@ -30,7 +30,7 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
                         binding.etName.setError("Please enter your name")
                     } else {
                         writeUserNameOnPreferences()
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, LessonList::class.java)
                         startActivity(intent)
                     }
                 }

@@ -18,6 +18,7 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityWelcomeBackBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.continueBtn.setOnClickListener(this)
+        binding.tvReset.setOnClickListener(this)
         sharedPrefs =
             this.getSharedPreferences("com_gp1_gbcproject_USER_NAME", MODE_PRIVATE)
         if (sharedPrefs.contains("KEY_USER_NAME")) {
@@ -30,16 +31,21 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
         if (view !== null) {
             when (view.id) {
                 R.id.continue_btn -> {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, LessonList::class.java)
                     startActivity(intent)
                 }
                 R.id.tv_reset -> {
-                    Log.d("asd", "Resettttttt")
+                    var removedUser = false
                     with(sharedPrefs.edit()) {
                         if (sharedPrefs.contains("KEY_USER_NAME")) {
                             remove("KEY_USER_NAME")
+                            removedUser = true
                             apply()
                         }
+                    }
+                    if (removedUser) {
+                        val intent = Intent(this, EnterYourNameActivity::class.java)
+                        startActivity(intent)
                     }
                 }
             }
