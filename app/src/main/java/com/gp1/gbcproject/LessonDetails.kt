@@ -13,8 +13,6 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.gp1.gbcproject.databinding.ActivityLessonDetailsBinding
-import java.util.stream.Collector
-import java.util.stream.Collectors
 import java.util.stream.Collectors.toSet
 
 class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChangeListener {
@@ -94,9 +92,8 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
             dataSource.finishedlessonset.add(dataSource.currentLesson!!.lessonid)
             val finisehedLessonSetString:MutableSet<String> = dataSource.finishedlessonset.stream().map{it.toString()}.collect(toSet())
             val userProgressName = "${dataSource.username!!.lowercase()}_lesson_progress"
-            Log.d("D1", "$userProgressName, ${userProgressName::class.java}")
             with(sharedPref.edit()){
-                putStringSet("${dataSource.username!!.lowercase()}_lesson_progress", finisehedLessonSetString)
+                putStringSet(userProgressName, finisehedLessonSetString)
                 apply()
             }
             finish()
