@@ -4,15 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import com.gp1.gbcproject.databinding.ActivityLessonDetailsBinding
-import java.util.stream.Collector
-import java.util.stream.Collectors
 import java.util.stream.Collectors.toSet
 
 class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChangeListener {
@@ -34,6 +34,22 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
         loadContents()
         attachListeners()
         super.onStart()
+    }
+
+    override fun onStop() {
+        Log.d("D1", "P2Stop")
+        super.onStop()
+    }
+
+    override fun onResume() {
+        Log.d("D1", "P2Resumne")
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        Log.d("D1", "P2Destroy")
+        dataSource.currentLesson = null
+        super.onDestroy()
     }
 
     private fun attachListeners() {
@@ -76,9 +92,8 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
             dataSource.finishedlessonset.add(dataSource.currentLesson!!.lessonid)
             val finisehedLessonSetString:MutableSet<String> = dataSource.finishedlessonset.stream().map{it.toString()}.collect(toSet())
             val userProgressName = "${dataSource.username!!.lowercase()}_lesson_progress"
-            Log.d("D1", "$userProgressName, ${userProgressName::class.java}")
             with(sharedPref.edit()){
-                putStringSet("${dataSource.username!!.lowercase()}_lesson_progress", finisehedLessonSetString)
+                putStringSet(userProgressName, finisehedLessonSetString)
                 apply()
             }
             finish()
@@ -95,7 +110,6 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
         Toast.makeText(this, "Note Saved!", Toast.LENGTH_SHORT)
             .show()
         hideKeyboard()
-
     }
 
     private fun readFromPreferences(){
@@ -122,10 +136,10 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
 
     private fun watchintent() {
         var intent = Intent()
-            .setAction(Intent.ACTION_SEND)
-            .putExtra(Intent.EXTRA_STREAM, dataSource.currentLesson!!.link)
+            .setAction(Intent.ACTION_VIEW)
+            .setData(Uri.parse(dataSource.currentLesson!!.link))
+            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
-        TODO("Not yet implemented")
     }
 
     fun Activity.hideKeyboard() {
