@@ -13,6 +13,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.gp1.gbcproject.databinding.ActivityLessonDetailsBinding
+import java.util.stream.Collector
+import java.util.stream.Collectors
 import java.util.stream.Collectors.toSet
 
 class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChangeListener {
@@ -92,8 +94,9 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
             dataSource.finishedlessonset.add(dataSource.currentLesson!!.lessonid)
             val finisehedLessonSetString:MutableSet<String> = dataSource.finishedlessonset.stream().map{it.toString()}.collect(toSet())
             val userProgressName = "${dataSource.username!!.lowercase()}_lesson_progress"
+            Log.d("D1", "$userProgressName, ${userProgressName::class.java}")
             with(sharedPref.edit()){
-                putStringSet(userProgressName, finisehedLessonSetString)
+                putStringSet("${dataSource.username!!.lowercase()}_lesson_progress", finisehedLessonSetString)
                 apply()
             }
             finish()
@@ -140,6 +143,22 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
             .setData(Uri.parse(dataSource.currentLesson!!.link))
             .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         startActivity(intent)
+    }
+
+    fun Activity.hideKeyboard() {
+        hideKeyboard(currentFocus ?: View(this))
+    }
+    fun Context.hideKeyboard(view: View) {
+        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    override fun onFocusChange(p0: View?, p1: Boolean) {
+        if(p0 != null){
+            when(p0.id){
+                binding.lessonDetailEdt.id -> hideKeyboard()
+            }
+        }
     }
 
     fun Activity.hideKeyboard() {
