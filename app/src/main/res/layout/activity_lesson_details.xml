@@ -38,14 +38,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Watch Lesson"
+        android:text="@string/watch_lesson"
         android:padding="15dp"
         android:id="@+id/btn_watch"/>
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Take Notes:"/>
+        android:text="@string/take_notes"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -56,15 +56,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="Save Notes"
-        android:layout_marginBottom="100dp"
+        android:text="@string/save_notes"
+        android:layout_marginBottom="20dp"
         android:id="@+id/btn_savenote"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Finish"
+        android:text="@string/finish"
         android:id="@+id/btn_finish"/>
 
 

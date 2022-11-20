@@ -12,7 +12,7 @@
         android:layout_margin="8dp"
         android:textAlignment="center"
         android:textSize="32sp"
-        android:text="This is the title"/>
+        android:text="@string/course_title"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,7 +20,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Force Sequential Progress?"
+            android:text="@string/force_sequential_progress"
             android:layout_margin="8dp"
             android:layout_weight="0.7"/>
         <ToggleButton
