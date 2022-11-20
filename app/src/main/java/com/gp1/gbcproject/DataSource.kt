@@ -26,8 +26,12 @@ class DataSource {
             }
         }
     }
-    var G_username:String? = "NA"
+    var username:String? = null
     val arrayoflesson:ArrayList<Lesson> = arrayListOf()
-
-
+    var milestone:Int = 0
+    var currentLesson:Lesson? = null
+    var currentLessonid:Int = -1
+    var finishedlessonlist:MutableList<Int> = mutableListOf()
+    var finishedlessonset:MutableSet<Int> = mutableSetOf()
+    var notearray:MutableList<String> = mutableListOf()
 }
