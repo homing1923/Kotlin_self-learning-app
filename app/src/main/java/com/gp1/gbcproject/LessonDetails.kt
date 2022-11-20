@@ -157,20 +157,4 @@ class LessonDetails : AppCompatActivity(),View.OnClickListener,View.OnFocusChang
             }
         }
     }
-
-    fun Activity.hideKeyboard() {
-        hideKeyboard(currentFocus ?: View(this))
-    }
-    fun Context.hideKeyboard(view: View) {
-        val inputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
-    override fun onFocusChange(p0: View?, p1: Boolean) {
-        if(p0 != null){
-            when(p0.id){
-                binding.lessonDetailEdt.id -> hideKeyboard()
-            }
-        }
-    }
 }
