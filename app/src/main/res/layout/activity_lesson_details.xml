@@ -50,6 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:inputType="textMultiLine"
+        android:gravity="start"
         android:id="@+id/lesson_detail_edt"/>
     <Button
         android:layout_width="wrap_content"

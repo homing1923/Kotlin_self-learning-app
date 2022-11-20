@@ -15,5 +15,10 @@
         android:layout_height="50dp"
         android:text="GO"
         android:id="@+id/tempgo"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Delete Data"
+        android:id="@+id/tempclr"/>
 
 </LinearLayout>

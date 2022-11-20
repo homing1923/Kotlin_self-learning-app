@@ -26,7 +26,7 @@ class DataSource {
             }
         }
     }
-    var G_username:String? = "NA"
+    var username:String? = null
     val arrayoflesson:ArrayList<Lesson> = arrayListOf()
     var milestone:Int = 0
     var currentLesson:Lesson? = null
