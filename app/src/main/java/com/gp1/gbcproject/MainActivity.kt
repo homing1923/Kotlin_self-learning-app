@@ -3,7 +3,6 @@ package com.gp1.gbcproject
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.gp1.gbcproject.databinding.ActivityMainBinding
@@ -37,12 +36,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         with(sharedPref.edit()){
             remove("${username}_lesson_progress")
 
-            for(each in dataSource.arrayoflesson){
+            for(each in dataSource.arrayOfLessons){
                 remove("${username}_lesson${each.lessonid}_note")
             }
-            commit()
+            apply()
         }
-        dataSource.finishedlessonset.removeAll(dataSource.finishedlessonset)
+        dataSource.finishedLessonSet.removeAll(dataSource.finishedLessonSet)
     }
 
     private fun gotolist() {

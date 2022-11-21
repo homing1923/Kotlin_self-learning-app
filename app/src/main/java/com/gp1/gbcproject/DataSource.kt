@@ -4,7 +4,7 @@ package com.gp1.gbcproject
 class DataSource {
     private constructor(
     ) {
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Getting Started",
                 65,
@@ -14,7 +14,7 @@ class DataSource {
                 1
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "The Basics",
                 125,
@@ -24,7 +24,7 @@ class DataSource {
                 2
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Debugging",
                 80,
@@ -34,7 +34,7 @@ class DataSource {
                 3
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Components and Data-binding",
                 45,
@@ -44,7 +44,7 @@ class DataSource {
                 4
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Directives",
                 95,
@@ -54,7 +54,7 @@ class DataSource {
                 5
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Using Services and Dependency Injection",
                 120,
@@ -64,7 +64,7 @@ class DataSource {
                 6
             )
         )
-        arrayoflesson.add(
+        arrayOfLessons.add(
             Lesson(
                 "Changing pages with Routing",
                 55,
@@ -91,11 +91,17 @@ class DataSource {
     }
 
     var username: String? = null
-    val arrayoflesson: ArrayList<Lesson> = arrayListOf()
+    val arrayOfLessons: ArrayList<Lesson> = arrayListOf()
     var milestone: Int = 0
     var currentLesson: Lesson? = null
-    var currentLessonid: Int = -1
-    var finishedlessonlist: MutableList<Int> = mutableListOf()
-    var finishedlessonset: MutableSet<Int> = mutableSetOf()
-    var notearray: MutableList<String> = mutableListOf()
+    var currentLessonId: Int = -1
+    var finishedLessonList: MutableList<Int> = mutableListOf()
+    var finishedLessonSet: MutableSet<Int> = mutableSetOf()
+    var noteArray: MutableList<String> = mutableListOf()
+
+    override fun toString(): String {
+        return "DataSource(username=$username, arrayOfLessons=$arrayOfLessons, milestone=$milestone, currentLesson=$currentLesson, currentLessonId=$currentLessonId, finishedLessonList=$finishedLessonList, finishedLessonSet=$finishedLessonSet, noteArray=$noteArray)"
+    }
+
+
 }

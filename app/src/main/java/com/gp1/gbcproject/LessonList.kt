@@ -14,21 +14,20 @@ class LessonList : AppCompatActivity() {
     lateinit var lessonListBinding: ActivityLessonListBinding
     lateinit var lessonadapter: LessonAdapter
     lateinit var dataSource: DataSource
-    lateinit var sharedPref: SharedPreferences
+    lateinit var sharedPrefs: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lessonListBinding = ActivityLessonListBinding.inflate(layoutInflater)
         setContentView(lessonListBinding.root)
         dataSource = DataSource.getInstance()
-        sharedPref = this.getSharedPreferences("com_gp1_gbcproject_PREF",MODE_PRIVATE)
-        setdummyuserdata()
+        sharedPrefs = this.getSharedPreferences("com_gp1_gbcproject_PREF", MODE_PRIVATE)
+        setUsername()
     }
 
     override fun onStart() {
-        restoreUserProgress()
-        attachadapter()
-        attachlisteners()
+        attachAdapter()
+        attachListeners()
         Log.d("D1", "start")
         super.onStart()
     }
@@ -38,71 +37,63 @@ class LessonList : AppCompatActivity() {
         super.onResume()
     }
 
-    private fun restoreUserProgress() {
-        val userProgressName = "${dataSource.username!!.lowercase()}_lesson_progress"
-        if(sharedPref.contains(userProgressName)){
-            dataSource.finishedlessonset = sharedPref.getStringSet(userProgressName, mutableSetOf())!!
-                .stream().map { it -> it.toInt() }.collect(Collectors.toSet())
-            Log.d("D1", "${sharedPref.getStringSet(userProgressName, mutableSetOf())}")
-            Log.d("D1", "${dataSource.finishedlessonset}")
-        }else{
-            //New user
-            Log.d("D1", "newUser")
-            with(sharedPref.edit()){
-                putStringSet(userProgressName, dataSource.finishedlessonset.stream().map { it -> it.toString() }.collect(Collectors.toSet()))
-                apply()
-            }
-        }
-    }
-
-    private fun attachlisteners() {
-        lessonListBinding.lvT1.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, pos, id ->
-            dataSource.currentLessonid = pos+1
-            if(lessonListBinding.tgForceSq.isChecked){
-                dataSource.finishedlessonlist.clear()
-                for(each in dataSource.finishedlessonset){
-                    dataSource.finishedlessonlist.add(each)
-                }
-                var next:Int = 1
-                dataSource.finishedlessonlist.sort()
-                if(dataSource.finishedlessonlist.size > 0){
-                    if(dataSource.finishedlessonlist.max() == dataSource.finishedlessonlist.size){
-                        next = dataSource.finishedlessonlist.max() + 1
-                    }else{
-                        for((i, each) in dataSource.finishedlessonlist.withIndex()){
-                            if(i != each + 1){
-                                next = i + 1
+    private fun attachListeners() {
+        lessonListBinding.lvT1.onItemClickListener =
+            AdapterView.OnItemClickListener { adapterView, view, pos, id ->
+                dataSource.currentLessonId = pos + 1
+                if (lessonListBinding.tgForceSq.isChecked) {
+                    dataSource.finishedLessonList.clear()
+                    for (each in dataSource.finishedLessonSet) {
+                        dataSource.finishedLessonList.add(each)
+                    }
+                    var next: Int = 1
+                    dataSource.finishedLessonList.sort()
+                    if (dataSource.finishedLessonList.size > 0) {
+                        if (dataSource.finishedLessonList.max() == dataSource.finishedLessonList.size) {
+                            next = dataSource.finishedLessonList.max() + 1
+                        } else {
+                            for ((i, each) in dataSource.finishedLessonList.withIndex()) {
+                                if (i != each + 1) {
+                                    next = i + 1
+                                }
                             }
                         }
                     }
-                }
-                if (dataSource.currentLessonid <= next  || dataSource.finishedlessonset.contains(dataSource.currentLessonid)) {
+                    if (dataSource.currentLessonId <= next || dataSource.finishedLessonSet.contains(
+                            dataSource.currentLessonId
+                        )
+                    ) {
+                        naviagtetodetail(pos)
+                    } else if (dataSource.currentLessonId != next) {
+                        Toast.makeText(this, "Your next course is lesson $next", Toast.LENGTH_SHORT)
+                            .show()
+                    } else {
+                        naviagtetodetail(pos)
+                    }
+                } else {
                     naviagtetodetail(pos)
-                } else if(dataSource.currentLessonid != next) {
-                    Toast.makeText(this, "Your next course is lesson $next", Toast.LENGTH_SHORT)
-                        .show()
-                }else{
-                    naviagtetodetail(pos)
                 }
-            }else{
-                naviagtetodetail(pos)
             }
-        }
     }
 
-    private fun naviagtetodetail(pos:Int){
-        dataSource.currentLesson = dataSource.arrayoflesson[pos]
+    private fun naviagtetodetail(pos: Int) {
+        dataSource.currentLesson = dataSource.arrayOfLessons[pos]
         var intent = Intent(this, LessonDetails::class.java)
         startActivity(intent)
     }
 
-    private fun attachadapter(){
-        lessonadapter = LessonAdapter(this, dataSource.arrayoflesson)
+    private fun attachAdapter() {
+        lessonadapter = LessonAdapter(this, dataSource.arrayOfLessons)
         lessonListBinding.lvT1.adapter = lessonadapter
     }
 
-    private fun setdummyuserdata (){
-        dataSource.username = "Ming"
+    private fun setUsername() {
+        if (dataSource.username !== null && dataSource.username!!.isEmpty() && sharedPrefs.contains(
+                "KEY_USER_NAME"
+            )
+        ) {
+            dataSource.username = sharedPrefs.getString("KEY_USER_NAME", "").toString()
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

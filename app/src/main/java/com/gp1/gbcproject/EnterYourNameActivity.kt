@@ -4,13 +4,16 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.gp1.gbcproject.R
 import com.gp1.gbcproject.databinding.ActivityEnterYourNameBinding
+import java.util.stream.Collectors
 
 class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var binding: ActivityEnterYourNameBinding
     lateinit var sharedPrefs: SharedPreferences
+    lateinit var dataSource: DataSource
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,8 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(binding.root)
         binding.continueBtn.setOnClickListener(this)
         sharedPrefs =
-            this.getSharedPreferences("com_gp1_gbcproject_USER_NAME", MODE_PRIVATE)
+            this.getSharedPreferences("com_gp1_gbcproject_PREF", MODE_PRIVATE)
+        dataSource = DataSource.getInstance()
         checkUserNameExists()
     }
 
@@ -41,6 +45,7 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
     private fun writeUserNameOnPreferences() {
         with(sharedPrefs.edit()) {
             putString("KEY_USER_NAME", binding.etName.text.toString())
+            dataSource.username = binding.etName.text.toString()
             apply()
         }
     }

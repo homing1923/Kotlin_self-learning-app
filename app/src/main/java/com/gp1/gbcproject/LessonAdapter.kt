@@ -24,7 +24,7 @@ class LessonAdapter(context: Context, LessonArray:ArrayList<Lesson>):ArrayAdapte
             binding.titleLesson.text = currentitem.title
             binding.lenLesson.text = currentitem.durToStr()
             binding.imgLesson.setImageResource(currentitem.img)
-            if(dataSource.finishedlessonset.contains(currentitem.lessonid)){
+            if(dataSource.finishedLessonSet.contains(currentitem.lessonid)){
                 binding.finTagLesson.setImageResource(R.drawable.ic_finished)
             }
         }
