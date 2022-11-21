@@ -36,10 +36,16 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
                         writeUserNameOnPreferences()
                         val intent = Intent(this, LessonList::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }
         }
+    }
+
+    override fun onBackPressed() {
+        finish()
+        System.exit(0)
     }
 
     private fun writeUserNameOnPreferences() {
@@ -56,6 +62,7 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
             if (userName != null && userName.isNotEmpty()) {
                 val intent = Intent(this, WelcomeBackActivity::class.java)
                 startActivity(intent)
+                finish()
             }
         }
     }

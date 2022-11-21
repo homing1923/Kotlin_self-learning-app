@@ -46,6 +46,7 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.continue_btn -> {
                     val intent = Intent(this, LessonList::class.java)
                     startActivity(intent)
+                    finish()
                 }
                 R.id.reset_btn -> {
                     var removedUser = false
@@ -66,6 +67,7 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
                     if (removedUser) {
                         val intent = Intent(this, EnterYourNameActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }
