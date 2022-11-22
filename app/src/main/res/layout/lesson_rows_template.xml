@@ -23,14 +23,14 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:layout_margin="8dp"
-                android:textSize="20sp"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
                 android:id="@+id/title_lesson"
                 android:text="Lesson Title"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="46dp"
-                android:layout_margin="8dp"
+                android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 android:text="LENGTH"
                 android:id="@+id/len_lesson"/>
