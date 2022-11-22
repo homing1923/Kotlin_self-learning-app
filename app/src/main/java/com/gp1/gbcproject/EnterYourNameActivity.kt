@@ -32,6 +32,8 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
                 R.id.continue_btn -> {
                     if (binding.etName.text.toString().isBlank()) {
                         binding.etName.setError("Please enter your name")
+                    } else if (binding.etName.text.toString().isNotBlank() && binding.etName.text.toString().length > 50) {
+                        binding.etName.setError("Please enter a maximum of 50 characters")
                     } else {
                         writeUserNameOnPreferences()
                         val intent = Intent(this, LessonList::class.java)
