@@ -30,7 +30,7 @@ class EnterYourNameActivity : AppCompatActivity(), View.OnClickListener {
         if (view !== null) {
             when (view.id) {
                 R.id.continue_btn -> {
-                    if (binding.etName.text.toString().isEmpty()) {
+                    if (binding.etName.text.toString().isBlank()) {
                         binding.etName.setError("Please enter your name")
                     } else {
                         writeUserNameOnPreferences()
