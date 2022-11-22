@@ -29,10 +29,7 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
             dataSource.username = userName
             restoreUserProgress()
             binding.tvWelcomeBack.setText("Welcome back, $userName")
-            Log.d("asd", "Luego poraca ${dataSource.arrayOfLessons.size}")
-            Log.d("asd", "Luego poraca ${dataSource.finishedLessonSet.size}")
             val progress = (dataSource.finishedLessonSet.size.toDouble() / dataSource.arrayOfLessons.size) * 100
-            Log.d("asd", "Luego poraca ${progress}")
             binding.tvProgress.setText("You've completed ${String.format("%.2f", progress)}% of the course!")
             binding.tvCompleted.setText("Lessons Completed: ${(dataSource.finishedLessonSet.size)}")
             val remainingLessons = dataSource.arrayOfLessons.size - dataSource.finishedLessonSet.size
@@ -75,7 +72,6 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun restoreUserProgress() {
-        Log.d("asd", "${dataSource.username}")
         if (dataSource.username !== null) {
             val userProgressName = "${dataSource.username!!.lowercase()}_lesson_progress"
             if (sharedPrefs.contains(userProgressName)) {

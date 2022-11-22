@@ -16,14 +16,6 @@ class LessonList : AppCompatActivity() {
     lateinit var dataSource: DataSource
     lateinit var sharedPrefs: SharedPreferences
 
-    override fun onBackPressed() {
-        if(!dataSource.username.isNullOrBlank()){
-            var intent = Intent(this, WelcomeBackActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        super.onBackPressed()
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         lessonListBinding = ActivityLessonListBinding.inflate(layoutInflater)

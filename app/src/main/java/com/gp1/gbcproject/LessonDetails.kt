@@ -86,7 +86,6 @@ class LessonDetails : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun finishLesson() {
-        Log.d("asd", "$dataSource")
         if (dataSource.finishedLessonSet.contains(dataSource.currentLesson!!.lessonid)) {
             Toast.makeText(this, "Your have already completed this lesson", Toast.LENGTH_SHORT)
                 .show()
