@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LessonDetails"
     android:orientation="vertical"
-    android:background="#eaf8ff"
     android:paddingHorizontal="12dp">
     <TextView
         android:layout_width="match_parent"
@@ -14,7 +13,7 @@
         android:layout_margin="8dp"
         android:text="Lessontitle"
         android:textAlignment="center"
-        android:textSize="22sp"
+        android:textSize="28sp"
         android:id="@+id/lesson_detail_title"/>
     <TextView
         android:layout_width="match_parent"
@@ -48,8 +47,9 @@
         android:text="@string/take_notes"/>
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:inputType="textMultiLine"
+        android:textSize="14sp"
         android:gravity="start"
         android:id="@+id/lesson_detail_edt"/>
     <Button
@@ -57,13 +57,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="@string/save_notes"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="120dp"
         android:id="@+id/btn_savenote"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="25dp"
         android:text="@string/finish"
         android:id="@+id/btn_finish"/>
 

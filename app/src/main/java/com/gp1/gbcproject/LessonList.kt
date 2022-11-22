@@ -36,13 +36,7 @@ class LessonList : AppCompatActivity() {
     override fun onStart() {
         attachAdapter()
         attachListeners()
-        Log.d("D1", "start")
         super.onStart()
-    }
-
-    override fun onResume() {
-        Log.d("D1", "resume")
-        super.onResume()
     }
 
     private fun attachListeners() {
@@ -102,10 +96,6 @@ class LessonList : AppCompatActivity() {
         ) {
             dataSource.username = sharedPrefs.getString("KEY_USER_NAME", "").toString()
         }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
 }

@@ -5,7 +5,8 @@
     <string name="enter_your_name">Enter your name</string>
     <string name="continue_btn">Continue</string>
     <string name="delete_all_data_and_reset">Delete all data and reset</string>
-    <string name="course_title">Angular - The Complete Guide (2023 Edition)</string>
+    <string name="course_title">Angular</string>
+    <string name="course_subtitle">The Complete Guide (2023 Edition)</string>
     <string name="force_sequential_progress">Force Sequential Progress?</string>
     <string name="save_notes">Save Notes</string>
     <string name="finish">Finish</string>

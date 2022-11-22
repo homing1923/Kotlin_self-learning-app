@@ -13,10 +13,10 @@ class LessonAdapter(context: Context, LessonArray:ArrayList<Lesson>):ArrayAdapte
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val currentitem = getItem(position)
 
-        var binding: LessonRowsTemplateBinding =
+        val binding: LessonRowsTemplateBinding =
         inflate(LayoutInflater.from(context))
 
-        var itemv = binding.root
+        val itemv = binding.root
 
         dataSource = DataSource.getInstance()
 
@@ -28,7 +28,6 @@ class LessonAdapter(context: Context, LessonArray:ArrayList<Lesson>):ArrayAdapte
                 binding.finTagLesson.setImageResource(R.drawable.ic_finished)
             }
         }
-
 
         return itemv
     }

@@ -10,7 +10,7 @@ class DataSource {
                 65,
                 R.drawable.number1,
                 "First things first! What is Angular? Why would you want to learn it? This lecture helps answering this question.",
-                "http://youtube.com",
+                "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
                 1
             )
         )

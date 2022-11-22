@@ -8,13 +8,16 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Log.i
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import com.gp1.gbcproject.databinding.ActivityLessonDetailsBinding
 import java.util.stream.Collectors.toSet
 
-class LessonDetails : AppCompatActivity(), View.OnClickListener, View.OnFocusChangeListener {
+class LessonDetails : AppCompatActivity(), View.OnClickListener {
 
     lateinit var binding: ActivityLessonDetailsBinding
     lateinit var dataSource: DataSource
@@ -55,7 +58,6 @@ class LessonDetails : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
         binding.btnFinish.setOnClickListener(this)
         binding.btnSavenote.setOnClickListener(this)
         binding.btnWatch.setOnClickListener(this)
-        binding.lessonDetailEdt.onFocusChangeListener = this
     }
 
     private fun loadContents() {
@@ -103,7 +105,7 @@ class LessonDetails : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
 
     private fun saveNote() {
         with(sharedPref.edit()) {
-            var lessonNoteName: String =
+            val lessonNoteName: String =
                 "${dataSource.username?.lowercase()}_lesson${dataSource.currentLessonId}_note"
             dataSource.noteArray[dataSource.currentLessonId] =
                 binding.lessonDetailEdt.text.toString()
@@ -138,11 +140,10 @@ class LessonDetails : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
     }
 
     private fun watchIntent() {
-        var intent = Intent()
-            .setAction(Intent.ACTION_VIEW)
-            .setData(Uri.parse(dataSource.currentLesson!!.link))
-            .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        startActivity(intent)
+        if(dataSource.currentLesson != null){
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(dataSource.currentLesson!!.link))
+            startActivity(intent)
+        }
     }
 
     fun Activity.hideKeyboard() {
@@ -153,13 +154,5 @@ class LessonDetails : AppCompatActivity(), View.OnClickListener, View.OnFocusCha
         val inputMethodManager =
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-    }
-
-    override fun onFocusChange(p0: View?, p1: Boolean) {
-        if (p0 != null) {
-            when (p0.id) {
-                binding.lessonDetailEdt.id -> hideKeyboard()
-            }
-        }
     }
 }

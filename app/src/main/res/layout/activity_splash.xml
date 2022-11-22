@@ -7,15 +7,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey">
+    android:background="@color/EggShell_1">
 
     <!-- Don't worry about the id names I have named the id's with reference to the file name for consistency -->
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="250dp"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="200dp"
         android:src="@mipmap/ic_ucicon2"
         app:srcCompat="@android:drawable/sym_def_app_icon" />
 
@@ -24,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/app_name"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="@color/black"
@@ -33,11 +34,13 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_below="@id/textView"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="200dp"
         android:indeterminateTint="@color/black"/>
 
     <TextView
@@ -46,10 +49,10 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/progressBar"
         android:gravity="center"
-        android:layout_margin="8dp"
+        android:layout_marginHorizontal="15dp"
         android:text="@string/designed_by_homing_lau_co"
         android:textColor="@color/black"
-        android:textSize="15dp"
+        android:textSize="10sp"
         android:textStyle="bold"
         android:textAlignment="center"/>
 

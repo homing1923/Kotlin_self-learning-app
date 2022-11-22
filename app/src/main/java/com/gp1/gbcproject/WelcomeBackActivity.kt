@@ -36,7 +36,7 @@ class WelcomeBackActivity : AppCompatActivity(), View.OnClickListener {
             binding.tvProgress.setText("You've completed ${String.format("%.2f", progress)}% of the course!")
             binding.tvCompleted.setText("Lessons Completed: ${(dataSource.finishedLessonSet.size)}")
             val remainingLessons = dataSource.arrayOfLessons.size - dataSource.finishedLessonSet.size
-            binding.tvRemaining.setText("Lessons remaining: $remainingLessons")
+            binding.tvRemaining.setText("Lessons Remaining: $remainingLessons")
         }
     }
 
